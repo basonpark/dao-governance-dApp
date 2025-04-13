@@ -1,0 +1,8 @@
+{
+  "network": "localhost",
+  "chainId": 31337,
+  "governanceTokenAddress": "0x8f86403A4DE0BB5791fa46B8e795C547942fE4Cf",
+  "timelockAddress": "0x5eb3Bc0a489C5A8288765d2336659EbCA68FCd00",
+  "governorAddress": "0x36C02dA8a0983159322a80FFE9F24b1acfF8B570",
+  "deployerAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+}

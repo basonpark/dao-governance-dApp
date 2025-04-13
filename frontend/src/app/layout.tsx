@@ -9,7 +9,15 @@ import { Providers } from "./providers";
 // Import Navbar
 import { Navbar } from "@/components/layout/Navbar"; // Adjust path if needed
 
-const inter = Inter({ subsets: ["latin"] });
+// Import Toaster for displaying notifications
+import { Toaster } from "@/components/ui/sonner"; // Adjust path if needed
+
+// Define Inter font with variable name for consistent usage
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter", // Define the CSS variable used in Tailwind config
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "NexusVoice DAO", // Updated title
@@ -22,17 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       {" "}
-      {/* Added suppressHydrationWarning for RainbowKit/Wagmi */}
-      <body
-        className={`${inter.className} bg-background text-foreground min-h-screen flex flex-col`}
-      >
+      {/* Added inter.variable to html for global access */}
+      <body className="bg-background text-foreground min-h-screen flex flex-col">
         <Providers>
           <Navbar /> {/* Add Navbar here */}
           <main className="container mx-auto px-4 py-8 flex-grow">
             {children}
           </main>
+          <Toaster /> {/* Add Toaster here for notifications */}
           {/* Optional Footer could go here */}
           {/* <footer className="py-4 border-t mt-auto">Footer Content</footer> */}
         </Providers>
