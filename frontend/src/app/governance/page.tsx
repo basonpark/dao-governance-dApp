@@ -146,7 +146,7 @@ function VotingPowerInfo() {
         <p>Voting Power: {isLoadingVotes ? "Loading..." : `${votes}`}</p>
         {needsDelegation && (
           <p className="text-sm text-amber-500">
-            You have tokens but haven't delegated voting power to yourself yet.
+            You have tokens but haven&apos;t delegated voting power to yourself yet.
           </p>
         )}
       </CardContent>
@@ -170,7 +170,7 @@ function VotingPowerInfo() {
 // TODO: Add proper event fetching and state mapping
 function ProposalList() {
   // For simplicity, we are not fetching proposal details here yet.
-  // In a real app, you'd fetch ProposalCreated events or call governor functions.
+  // In a real app, you&apos;d fetch ProposalCreated events or call governor functions.
   return (
     <Card>
       <CardHeader>
@@ -353,7 +353,7 @@ function CreateProposalForm() {
               required
             />
             <p className="text-xs text-muted-foreground mt-1">
-              Encode function calls using tools like Etherscan or Viem's
+              Encode function calls using tools like Etherscan or Viem&apos;s
               encodeFunctionData. Example:
               0xa9059cbb000000000000000000000000RecipientAddress0000000000000000000000000000000000000000000000000de0b6b3a7640000
               (transfer 1 token)
