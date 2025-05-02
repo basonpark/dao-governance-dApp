@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BarChart3,
   FileText,
@@ -18,19 +18,19 @@ import {
   Sun,
   Wallet,
   X,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { CreateProposalDialog } from "@/components/create-proposal-dialog"
-import { Sheet, SheetContent } from "@/components/ui/sheet"
-import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { CreateProposalDialog } from "@/components/create-proposal-dialog";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 interface NavItemProps {
-  icon: LucideIcon
-  title: string
-  href: string
-  isActive?: boolean
+  icon: LucideIcon;
+  title: string;
+  href: string;
+  isActive?: boolean;
 }
 
 function NavItem({ icon: Icon, title, href, isActive }: NavItemProps) {
@@ -41,7 +41,7 @@ function NavItem({ icon: Icon, title, href, isActive }: NavItemProps) {
         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all",
         isActive
           ? "bg-gradient-to-r from-primary/20 to-primary/10 text-primary font-medium shadow-sm"
-          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+          : "text-muted-foreground hover:bg-muted hover:text-foreground"
       )}
     >
       <motion.div
@@ -61,24 +61,30 @@ function NavItem({ icon: Icon, title, href, isActive }: NavItemProps) {
         />
       )}
     </Link>
-  )
+  );
 }
 
-export function DashboardShell({ children, pageTitle }: { children: React.ReactNode; pageTitle?: string }) {
-  const [isCreateProposalOpen, setIsCreateProposalOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
+export function DashboardShell({
+  children,
+  pageTitle,
+}: {
+  children: React.ReactNode;
+  pageTitle?: string;
+}) {
+  const [isCreateProposalOpen, setIsCreateProposalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
+      setScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="flex min-h-screen w-full bg-background">
@@ -89,21 +95,23 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
         transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className="hidden border-r bg-gradient-to-b from-muted/50 to-background lg:block lg:w-72 lg:flex-none"
       >
-        <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex h-full flex-col gap-2">
           <div className="flex h-16 items-center border-b px-6">
-            <Link href="/" className="flex items-center gap-2 font-heading font-bold">
-              <motion.div
-                whileHover={{ rotate: 5 }}
-                className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-primary to-primary-foreground/50 text-primary-foreground"
-              >
-                DAO
-              </motion.div>
-              <span className="text-xl">Governance</span>
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-heading font-bold"
+            >
+              <span className="text-xl"></span>
             </Link>
           </div>
           <div className="flex-1 overflow-auto py-4">
             <nav className="grid items-start px-4 text-sm font-medium gap-1">
-              <NavItem icon={Home} title="Overview" href="/dashboard" isActive={pathname === "/dashboard"} />
+              <NavItem
+                icon={Home}
+                title="Overview"
+                href="/dashboard"
+                isActive={pathname === "/dashboard"}
+              />
               <NavItem
                 icon={FileText}
                 title="Proposals"
@@ -142,14 +150,20 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
               >
-                <h3 className="px-3 text-xs font-medium text-muted-foreground">Governance Stats</h3>
+                <h3 className="px-3 text-xs font-medium text-muted-foreground">
+                  Governance Stats
+                </h3>
                 <div className="mt-2 space-y-1 rounded-lg bg-muted/50 p-3">
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Total Proposals</span>
+                    <span className="text-muted-foreground">
+                      Total Proposals
+                    </span>
                     <span className="font-medium">142</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Active Proposals</span>
+                    <span className="text-muted-foreground">
+                      Active Proposals
+                    </span>
                     <span className="font-medium">8</span>
                   </div>
                   <div className="flex justify-between text-xs">
@@ -157,7 +171,9 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                     <span className="font-medium">4%</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Participation Rate</span>
+                    <span className="text-muted-foreground">
+                      Participation Rate
+                    </span>
                     <span className="font-medium">32.5%</span>
                   </div>
                 </div>
@@ -170,14 +186,20 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.4 }}
               >
-                <h3 className="px-3 text-xs font-medium text-muted-foreground">Your Activity</h3>
+                <h3 className="px-3 text-xs font-medium text-muted-foreground">
+                  Your Activity
+                </h3>
                 <div className="mt-2 space-y-1 rounded-lg bg-muted/50 p-3">
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Proposals Created</span>
+                    <span className="text-muted-foreground">
+                      Proposals Created
+                    </span>
                     <span className="font-medium">3</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Proposals Voted</span>
+                    <span className="text-muted-foreground">
+                      Proposals Voted
+                    </span>
                     <span className="font-medium">27</span>
                   </div>
                   <div className="flex justify-between text-xs">
@@ -217,13 +239,23 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                 </div>
                 <span className="text-xl">Governance</span>
               </Link>
-              <Button variant="ghost" size="icon" className="ml-auto" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="ml-auto"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
             <div className="flex-1 overflow-auto py-4">
               <nav className="grid items-start px-4 text-sm font-medium gap-1">
-                <NavItem icon={Home} title="Overview" href="/dashboard" isActive={pathname === "/dashboard"} />
+                <NavItem
+                  icon={Home}
+                  title="Overview"
+                  href="/dashboard"
+                  isActive={pathname === "/dashboard"}
+                />
                 <NavItem
                   icon={FileText}
                   title="Proposals"
@@ -257,14 +289,20 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
               </nav>
 
               <div className="mt-8 px-4">
-                <h3 className="px-3 text-xs font-medium text-muted-foreground">Governance Stats</h3>
+                <h3 className="px-3 text-xs font-medium text-muted-foreground">
+                  Governance Stats
+                </h3>
                 <div className="mt-2 space-y-1 rounded-lg bg-muted/50 p-3">
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Total Proposals</span>
+                    <span className="text-muted-foreground">
+                      Total Proposals
+                    </span>
                     <span className="font-medium">142</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Active Proposals</span>
+                    <span className="text-muted-foreground">
+                      Active Proposals
+                    </span>
                     <span className="font-medium">8</span>
                   </div>
                   <div className="flex justify-between text-xs">
@@ -272,7 +310,9 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                     <span className="font-medium">4%</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Participation Rate</span>
+                    <span className="text-muted-foreground">
+                      Participation Rate
+                    </span>
                     <span className="font-medium">32.5%</span>
                   </div>
                 </div>
@@ -282,8 +322,8 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
               <Button
                 className="w-full justify-start gap-2 shadow-lg shadow-primary/20 bg-gradient-to-r from-primary to-primary/90"
                 onClick={() => {
-                  setIsCreateProposalOpen(true)
-                  setIsMobileMenuOpen(false)
+                  setIsCreateProposalOpen(true);
+                  setIsMobileMenuOpen(false);
                 }}
               >
                 <PlusCircle className="h-4 w-4" />
@@ -301,10 +341,15 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
             "sticky top-0 z-10 flex h-16 items-center gap-4 border-b px-4 sm:px-6 lg:px-8 transition-all duration-200",
             scrolled
               ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm"
-              : "bg-background",
+              : "bg-background"
           )}
         >
-          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
@@ -331,7 +376,11 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="hidden md:block">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block"
+            >
               <Button
                 variant="outline"
                 size="sm"
@@ -342,15 +391,10 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
                 Create Proposal
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full shadow-sm bg-gradient-to-r from-background to-muted/50 border-muted-foreground/20"
-              >
-                <span className="truncate">0x71C...1F3d</span>
-              </Button>
-            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            ></motion.div>
           </div>
         </header>
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
@@ -368,7 +412,10 @@ export function DashboardShell({ children, pageTitle }: { children: React.ReactN
         </main>
       </div>
 
-      <CreateProposalDialog open={isCreateProposalOpen} onOpenChange={setIsCreateProposalOpen} />
+      <CreateProposalDialog
+        open={isCreateProposalOpen}
+        onOpenChange={setIsCreateProposalOpen}
+      />
     </div>
-  )
+  );
 }

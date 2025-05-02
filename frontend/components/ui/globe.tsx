@@ -2,10 +2,15 @@
 
 import { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 
-export function Globe() {
+interface GlobeProps {
+  className?: string;
+}
+
+export function Globe({ className }: GlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -275,7 +280,7 @@ export function Globe() {
       animate={{ opacity: isLoaded ? 1 : 0 }}
       transition={{ duration: 1.5, ease: "easeInOut" }}
       ref={containerRef}
-      className="w-full h-full"
+      className={cn("w-full h-full", className)}
     />
   )
 }

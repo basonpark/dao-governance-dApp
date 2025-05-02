@@ -1,68 +1,39 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowRight, ChevronRight, Globe, Shield, Users, Vote, FileText, Wallet, BarChart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Globe as GlobeComponent } from "@/components/ui/globe"
-import { StatsCard } from "@/components/stats-card"
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
-import { TiltedScroll, TiltedScrollItem } from "@/components/ui/tilted-scroll"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import Link from "next/link";
+import {
+  ArrowRight,
+  ChevronRight,
+  Globe,
+  Shield,
+  Users,
+  Vote,
+  FileText,
+  Wallet,
+  BarChart,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { StatsCard } from "@/components/stats-card";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { TiltedScroll, TiltedScrollItem } from "@/components/ui/tilted-scroll";
+import { Globe as GlobeComponent } from "@/components/ui/globe";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function LandingPage() {
-  const targetRef = useRef<HTMLDivElement>(null)
+  const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start end", "end start"],
-  })
+  });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1])
-  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
   return (
     <div className="flex min-h-screen flex-col" ref={targetRef}>
-      {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <motion.div
-              whileHover={{ rotate: 5 }}
-              className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-primary to-primary-foreground/50 text-primary-foreground"
-            >
-              DAO
-            </motion.div>
-            <span className="font-heading text-xl font-bold">Governance</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            <Link href="/" className="font-medium transition-colors hover:text-primary">
-              Home
-            </Link>
-            <Link href="/dashboard" className="font-medium transition-colors hover:text-primary">
-              Dashboard
-            </Link>
-            <Link href="#features" className="font-medium transition-colors hover:text-primary">
-              Features
-            </Link>
-            <Link href="#about" className="font-medium transition-colors hover:text-primary">
-              About
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Link href="/dashboard">
-              <Button variant="outline" className="hidden md:flex">
-                Launch App
-              </Button>
-            </Link>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="shadow-lg shadow-primary/20">Connect Wallet</Button>
-            </motion.div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32">
         <div className="container relative z-10 flex flex-col items-center text-center">
@@ -72,7 +43,7 @@ export default function LandingPage() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-4xl font-bold leading-tight md:text-6xl lg:text-7xl bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent"
           >
-            Decentralized Governance <br /> for the Future
+            Governance <br /> DAO for the Future
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -80,8 +51,9 @@ export default function LandingPage() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl"
           >
-            Participate in transparent decision-making with our state-of-the-art DAO governance platform. Vote, propose,
-            and shape the future together.
+            Participate in transparent decision-making with our state-of-the-art
+            DAO governance platform. Vote, propose, and shape the future
+            together.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,15 +62,24 @@ export default function LandingPage() {
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <Link href="/dashboard">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="h-12 px-8 shadow-xl shadow-primary/20">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  size="lg"
+                  className="h-12 px-8 shadow-xl shadow-primary/20"
+                >
                   Enter Dashboard
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>
             </Link>
             <Link href="#features">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button variant="outline" size="lg" className="h-12 px-8">
                   Learn More
                 </Button>
@@ -181,14 +162,23 @@ export default function LandingPage() {
             viewport={{ once: true, margin: "-100px" }}
             className="flex items-center justify-between mb-8"
           >
-            <h2 className="font-heading text-3xl font-bold">Recent Proposals</h2>
-            <Link href="/dashboard/proposals" className="flex items-center text-primary font-medium">
+            <h2 className="font-heading text-3xl font-bold">
+              Recent Proposals
+            </h2>
+            <Link
+              href="/dashboard/proposals"
+              className="flex items-center text-primary font-medium"
+            >
               View All
               <ChevronRight className="ml-1 h-4 w-4" />
             </Link>
           </motion.div>
 
-          <TiltedScroll tiltAmount={5} scrollMultiplier={0.8} className="w-full py-4">
+          <TiltedScroll
+            tiltAmount={5}
+            scrollMultiplier={0.8}
+            className="w-full py-4"
+          >
             {[
               {
                 id: "1",
@@ -225,8 +215,46 @@ export default function LandingPage() {
                 category: "Protocol",
                 votes: { for: 58, against: 32, abstain: 10 },
               },
+              {
+                id: "6",
+                title: "Launch grants program V2",
+                status: "pending",
+                category: "Funding",
+                votes: { for: 0, against: 0, abstain: 0 },
+              },
+              {
+                id: "7",
+                title: "Revise contributor compensation",
+                status: "active",
+                category: "Governance",
+                votes: { for: 70, against: 20, abstain: 10 },
+              },
+              {
+                id: "8",
+                title: "Form partnership with Project X",
+                status: "queued",
+                category: "Partnerships",
+                votes: { for: 0, against: 0, abstain: 0 },
+              },
+              {
+                id: "9",
+                title: "Implement ZK-rollup for scaling",
+                status: "active",
+                category: "Protocol",
+                votes: { for: 60, against: 30, abstain: 10 },
+              },
+              {
+                id: "10",
+                title: "Update DAO Constitution",
+                status: "succeeded",
+                category: "Governance",
+                votes: { for: 85, against: 10, abstain: 5 },
+              },
             ].map((proposal) => (
-              <TiltedScrollItem key={proposal.id} className="w-[300px] md:w-[350px]">
+              <TiltedScrollItem
+                key={proposal.id}
+                className="w-[300px] md:w-[350px]"
+              >
                 <Link href="/dashboard/proposals">
                   <Card className="h-full border-none shadow-xl bg-gradient-to-br from-card to-card/80 hover:shadow-2xl transition-all duration-300">
                     <CardContent className="p-6">
@@ -237,19 +265,22 @@ export default function LandingPage() {
                               proposal.status === "active"
                                 ? "bg-blue-500/20 text-blue-700"
                                 : proposal.status === "pending"
-                                  ? "bg-yellow-500/20 text-yellow-700"
-                                  : proposal.status === "executed"
-                                    ? "bg-green-500/20 text-green-700"
-                                    : "bg-red-500/20 text-red-700"
+                                ? "bg-yellow-500/20 text-yellow-700"
+                                : proposal.status === "executed"
+                                ? "bg-green-500/20 text-green-700"
+                                : "bg-red-500/20 text-red-700"
                             }`}
                           >
-                            {proposal.status.charAt(0).toUpperCase() + proposal.status.slice(1)}
+                            {proposal.status.charAt(0).toUpperCase() +
+                              proposal.status.slice(1)}
                           </div>
                           <div className="px-2 py-1 text-xs font-medium rounded-full bg-muted/50">
                             {proposal.category}
                           </div>
                         </div>
-                        <h3 className="font-heading font-medium text-base mb-4">{proposal.title}</h3>
+                        <h3 className="font-heading font-medium text-base mb-4">
+                          {proposal.title}
+                        </h3>
 
                         {proposal.status !== "pending" && (
                           <div className="mt-auto">
@@ -262,13 +293,17 @@ export default function LandingPage() {
                               />
                               <motion.div
                                 initial={{ width: 0 }}
-                                animate={{ width: `${proposal.votes.against}%` }}
+                                animate={{
+                                  width: `${proposal.votes.against}%`,
+                                }}
                                 transition={{ duration: 1, ease: "easeOut" }}
                                 className="bg-red-500"
                               />
                               <motion.div
                                 initial={{ width: 0 }}
-                                animate={{ width: `${proposal.votes.abstain}%` }}
+                                animate={{
+                                  width: `${proposal.votes.abstain}%`,
+                                }}
                                 transition={{ duration: 1, ease: "easeOut" }}
                                 className="bg-gray-400"
                               />
@@ -291,14 +326,21 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section with Bento Grid */}
-      <section id="features" className="py-20 bg-gradient-to-b from-background to-muted/30">
+      <section
+        id="features"
+        className="py-20 bg-gradient-to-b from-background to-muted/30"
+      >
         <div className="container">
-          <motion.div style={{ opacity, scale, y }} className="mx-auto max-w-2xl text-center mb-16">
+          <motion.div
+            style={{ opacity, scale, y }}
+            className="mx-auto max-w-2xl text-center mb-16"
+          >
             <h2 className="font-heading text-3xl font-bold md:text-4xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               Powerful Governance Features
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Our platform provides all the tools you need for effective decentralized governance.
+              Our platform provides all the tools you need for effective
+              decentralized governance.
             </p>
           </motion.div>
 
@@ -310,7 +352,7 @@ export default function LandingPage() {
                   "Real-time voting results with detailed analytics and complete transparency for all participants.",
                 icon: <Vote className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/10 border-blue-200 dark:border-blue-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
               {
                 title: "Proposal Creation",
@@ -318,7 +360,7 @@ export default function LandingPage() {
                   "Intuitive interface for creating and submitting governance proposals with on-chain execution.",
                 icon: <FileText className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-900/10 border-purple-200 dark:border-purple-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
               {
                 title: "Delegation System",
@@ -326,7 +368,7 @@ export default function LandingPage() {
                   "Flexible delegation system allowing token holders to delegate their voting power to trusted representatives.",
                 icon: <Users className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-900/10 border-green-200 dark:border-green-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
               {
                 title: "Treasury Management",
@@ -334,7 +376,7 @@ export default function LandingPage() {
                   "Comprehensive tools for managing and monitoring the DAO's treasury assets and allocations.",
                 icon: <Wallet className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-900/10 border-yellow-200 dark:border-yellow-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
               {
                 title: "Governance Analytics",
@@ -342,7 +384,7 @@ export default function LandingPage() {
                   "Detailed analytics and insights into voting patterns, proposal success rates, and participant engagement.",
                 icon: <BarChart className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-900/10 border-red-200 dark:border-red-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
               {
                 title: "Multi-chain Support",
@@ -350,7 +392,7 @@ export default function LandingPage() {
                   "Support for governance across multiple blockchains with unified interface and experience.",
                 icon: <Globe className="h-10 w-10 text-primary" />,
                 className:
-                  "bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-900/10 border-indigo-200 dark:border-indigo-800/30",
+                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800/30 shadow-md hover:shadow-lg transition-shadow",
               },
             ].map((feature, index) => (
               <motion.div
@@ -380,22 +422,22 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="mx-auto max-w-3xl rounded-3xl bg-gradient-to-br from-primary/80 to-primary p-8 text-center shadow-2xl md:p-12"
+            className="mx-auto max-w-3xl rounded-3xl bg-gradient-to-br from-primary to-primary/90 p-8 text-center shadow-2xl md:p-12"
           >
             <h2 className="font-heading text-3xl font-bold text-primary-foreground md:text-4xl">
               Ready to Shape the Future?
             </h2>
             <p className="mt-4 text-primary-foreground/90 md:text-lg">
-              Join our community of governance participants and help steer the direction of the protocol.
+              Join our community of governance participants and help steer the
+              direction of the protocol.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="secondary" className="h-12 px-8 shadow-lg">
-                  Connect Wallet
-                </Button>
-              </motion.div>
+              <w3m-button />
               <Link href="/dashboard">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     size="lg"
                     variant="outline"
@@ -408,34 +450,8 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </div>
-        <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
+        <div className="absolute inset-0 bg-grid-primary/5 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
       </section>
-
-      {/* Footer */}
-      <footer className="border-t py-12 bg-gradient-to-t from-muted/50 to-background">
-        <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              DAO
-            </div>
-            <span className="font-heading text-xl font-bold">Governance</span>
-          </div>
-          <p className="text-center text-sm text-muted-foreground md:text-left">
-            &copy; {new Date().getFullYear()} DAO Governance. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Terms
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Privacy
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Docs
-            </Link>
-          </div>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }

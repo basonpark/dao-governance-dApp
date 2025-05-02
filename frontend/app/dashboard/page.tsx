@@ -1,9 +1,9 @@
-import { DashboardShell } from "@/components/dashboard-shell"
-import { ProposalList } from "@/components/proposal-list"
-import { UserStats } from "@/components/user-stats"
-import { GovernanceParameters } from "@/components/governance-parameters"
-import { NetworkStats } from "@/components/network-stats"
-import { RecentActivity } from "@/components/recent-activity"
+import { DashboardShell } from "@/components/dashboard-shell";
+import { ProposalList } from "@/components/proposal-list";
+import { UserStats } from "@/components/user-stats";
+import { GovernanceParameters } from "@/components/governance-parameters";
+import { NetworkStats } from "@/components/network-stats";
+import { RecentActivity } from "@/components/recent-activity";
 
 export default function DashboardPage() {
   return (
@@ -24,5 +24,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </DashboardShell>
-  )
+  );
 }
